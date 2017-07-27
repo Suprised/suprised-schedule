@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job-scheduling-data
+	xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_2._2.xsd"
+	version="2.2">
+
+    <!-- <processing-directives>
+        <overwrite-existing-data>true</overwrite-existing-data>
+    </processing-directives> -->
+    <!-- <pre-processing-commands>
+        <delete-jobs-in-group></delete-jobs-in-group>
+        <delete-triggers-in-group></delete-triggers-in-group>
+        <delete-job>
+            <name>my-very-clever-job</name>
+            <group>MYJOB_GROUP</group>
+        </delete-job>
+        <delete-job>
+            <name>my-very-clever-job2</name>
+            <group>MYJOB_GROUP2</group>
+        </delete-job>
+        <delete-trigger>
+            <name>my-trigger</name>
+            <group>MYTRIGGER_GROUP</group>
+        </delete-trigger>
+        <delete-trigger>
+            <name>my-trigger2</name>
+            <group>MYTRIGGER_GROUP2</group>
+        </delete-trigger>
+        <delete-trigger>
+            <name>my-trigger3</name>
+            <group>MYTRIGGER_GROUP3</group>
+        </delete-trigger>
+    </pre-processing-commands> -->
+	<schedule>
+		<job>
+			<name>my-very-clever-job</name>
+			<group>MYJOB_GROUP</group>
+
+			<description>The job description</description>
+			<job-class>com.suprised.schedule.plugin.PluginJobTest</job-class>
+			<job-data-map> 
+				<entry>
+					<key>jobName</key>
+					<value>工作1----</value>
+				</entry>
+				<entry>
+					<key>jobGroup</key>
+					<value>分组1----</value>
+				</entry>
+			</job-data-map>
+		</job>
+		<job>
+			<name>my-very-clever-job2</name>
+			<group>MYJOB_GROUP2</group>
+
+			<description>The job description</description>
+			<job-class>com.suprised.schedule.plugin.PluginJobTest</job-class>
+			<job-data-map> 
+				<entry>
+					<key>jobName</key>
+					<value>工作2----</value>
+				</entry>
+				<entry>
+					<key>jobGroup</key>
+					<value>分组2----</value>
+				</entry>
+			</job-data-map>
+		</job>
+
+		<trigger>
+			<cron>
+				<name>my-trigger</name>
+				<group>MYTRIGGER_GROUP</group>
+				<job-name>my-very-clever-job</job-name>
+				<job-group>MYJOB_GROUP</job-group>
+				<!-- 从第0秒开始，每隔5s执行一次 -->
+				<cron-expression>0 */2 * * * ?</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>my-trigger2</name>
+				<group>MYTRIGGER_GROUP2</group>
+				<job-name>my-very-clever-job2</job-name>
+				<job-group>MYJOB_GROUP2</job-group>
+				<!-- 每隔一分钟触发一次 -->
+				<cron-expression>0 */5 * * * ?</cron-expression>
+			</cron>
+		</trigger>
+		<!-- <trigger>
+			<cron>
+				<name>my-trigger3</name>
+				<group>MYTRIGGER_GROUP3</group>
+				<job-name>my-very-clever-job2</job-name>
+				<job-group>MYJOB_GROUP2</job-group>
+				每隔一分钟触发一次
+				<cron-expression>0 */10 * * ? * ?</cron-expression>
+			</cron>
+		</trigger> -->
+	</schedule>
+</job-scheduling-data>

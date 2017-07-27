@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job-scheduling-data
+	xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_2._2.xsd"
+	version="2.2">
+
+    <!-- 
+    
+        // 系统
+            qrtzList.add(new MapBean("academyStatJob", qrtzMap.get("academyStatJob")));
+            qrtzList.add(new MapBean("teachingStatJob", qrtzMap.get("teachingStatJob")));
+            qrtzList.add(new MapBean("forumStatJob", qrtzMap.get("forumStatJob")));
+            qrtzList.add(new MapBean("logonClickTaskJob", qrtzMap.get("logonClickTaskJob")));
+        // 定时删除提醒
+            qrtzList.add(new MapBean("regularlyDeleteRemindJob", qrtzMap.get("regularlyDeleteRemindJob")));
+        // 索引创建
+            qrtzList.add(new MapBean("buildIndexJob", qrtzMap.get("buildIndexJob")));
+        // 垃圾清理
+            qrtzList.add(new MapBean("cleanUpGarbageTaskJob", qrtzMap.get("cleanUpGarbageTaskJob")));
+            qrtzList.add(new MapBean("topicTaskJob", qrtzMap.get("topicTaskJob")));
+            qrtzList.add(new MapBean("communityTaskJob", qrtzMap.get("communityTaskJob")));
+        
+    
+        
+     -->
+
+	<schedule>
+		<job>
+			<name>academyStatJob</name>
+			<group>system</group>
+			<description>注：该调度用来统计机构拥有的课程数、资源数、试题数、老师数、学生数、资源等级分类数、资源点击/下载数等；</description>
+			<job-class>com.suprised.schedule.plugin.PluginJobTest</job-class>
+			<job-data-map> 
+				<entry>
+					<key>targetObject</key>
+					<value></value>
+				</entry>
+				<entry>
+					<key>targetMethod</key>
+					<value>baseBackStatistic</value>
+				</entry>
+			</job-data-map>
+		</job>
+		<job>
+			<name>academyStatJob</name>
+			<group>system</group>
+
+			<description>The job description</description>
+			<job-class>com.suprised.schedule.plugin.PluginJobTest</job-class>
+			<job-data-map> 
+				<entry>
+					<key>jobName</key>
+					<value>工作2----</value>
+				</entry>
+				<entry>
+					<key>jobGroup</key>
+					<value>分组2----</value>
+				</entry>
+			</job-data-map>
+		</job>
+
+		<trigger>
+			<cron>
+				<name>my-trigger</name>
+				<group>MYTRIGGER_GROUP</group>
+				<job-name>my-very-clever-job</job-name>
+				<job-group>MYJOB_GROUP</job-group>
+				<!-- 从第0秒开始，每隔5s执行一次 -->
+				<cron-expression>0 */2 * * * ?</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>my-trigger2</name>
+				<group>MYTRIGGER_GROUP2</group>
+				<job-name>my-very-clever-job2</job-name>
+				<job-group>MYJOB_GROUP2</job-group>
+				<!-- 每隔一分钟触发一次 -->
+				<cron-expression>0 */5 * * * ?</cron-expression>
+			</cron>
+		</trigger>
+		<!-- <trigger>
+			<cron>
+				<name>my-trigger3</name>
+				<group>MYTRIGGER_GROUP3</group>
+				<job-name>my-very-clever-job2</job-name>
+				<job-group>MYJOB_GROUP2</job-group>
+				每隔一分钟触发一次
+				<cron-expression>0 */10 * * ? * ?</cron-expression>
+			</cron>
+		</trigger> -->
+	</schedule>
+</job-scheduling-data>
